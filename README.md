@@ -70,3 +70,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # my-youtube
+- created Base structure
+- created Header with logo and search bar
+- created sidebar 
+- Enabled Youtube API key 
+- Consumed Youtube API key
