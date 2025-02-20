@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { YOUTUBE_VIDEOS_API } from '../utils/constants';
 import VideoCard from './VideoCard';
+import { Link } from 'react-router-dom';
 const VideoContainer = () => {
  
  const [videos, setVideos] = useState([]);
@@ -15,17 +16,20 @@ const VideoContainer = () => {
       console.log("API" + json);
       setVideos(json?.items);
     }catch(error) {
-      console.log(error.message);
       res.status(400).json({ error: error.message });
     }
    
   };
 
   return (
-    <div>
-      {videos && videos?.length > 0 ?<VideoCard info={videos[0]}/> : <p>Loading...</p>}
+    <div className='flex flex-wrap justify-start w-auto'>
+      {videos.map((video) => (
+       <Link to={"/watch?v="+video.id}>
+            <VideoCard key={video.id} info={video} />
+       </Link> 
+      ))}
     </div>
-  )
+  );
 }
 
 export default VideoContainer
