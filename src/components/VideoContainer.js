@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import { YOUTUBE_VIDEOS_API } from '../utils/constants';
-import VideoCard from './VideoCard';
+import VideoCard , {AddVideoCard} from './VideoCard';
 import { Link } from 'react-router-dom';
+
+// wrap VideoCard with HOC
+const EnhancedVideoCard = AddVideoCard(VideoCard);
+
 const VideoContainer = () => {
  
  const [videos, setVideos] = useState([]);
@@ -23,9 +27,10 @@ const VideoContainer = () => {
 
   return (
     <div className='flex flex-wrap justify-start w-auto'>
+      {videos[0] && <EnhancedVideoCard info={videos[0]}/>}
       {videos.map((video) => (
-       <Link to={"/watch?v="+video.id}>
-            <VideoCard key={video.id} info={video} />
+       <Link key={video.id} to={"/watch?v="+video.id}>
+            <VideoCard  info={video} />
        </Link> 
       ))}
     </div>
