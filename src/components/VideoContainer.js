@@ -27,7 +27,8 @@ const VideoContainer = () => {
 
   return (
     <div className='flex flex-wrap justify-start w-auto'>
-      {videos[0] && <EnhancedVideoCard info={videos[0]}/>}
+      
+      {/* {videos[0] && <EnhancedVideoCard info={videos[0]}/>}  code block for HOC commented for UI issue */} 
       {videos.map((video) => (
        <Link key={video.id} to={"/watch?v="+video.id}>
             <VideoCard  info={video} />
