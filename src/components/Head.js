@@ -1,17 +1,27 @@
 import React , {useState,useEffect}from 'react'
-import  { useDispatch } from "react-redux";
+import  { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from '../utils/appSlice';
 import { SEARCH_API } from '../utils/constants';
+import { cacheResults } from '../utils/searchSlice';
 
 const Head = () => {
 const [searchQuery, setSearchQuery] = useState("");
 const [suggestions, setSuggestions] = useState([]);
+const [showSuggestions, setShowSuggestions] = useState(false);
+const searchCache = useSelector((store) => store.search);
 const dispatch = useDispatch();
 useEffect(()=> {
  //make an api call after every keypress
  // but if the diffenrce beyween two api calls is less than 200 ms 
  // decline the api call
- const timer = setTimeout(() => getSearchSuggestions(), 200);// In this code we are saying do a cal lafter 200 ms 
+ const timer = setTimeout(() => {
+  if(searchCache[searchQuery]){
+    setSuggestions(searchCache[searchQuery]);
+  } else {
+    getSearchSuggestions();
+  }
+ }, 200);
+ // In this code we are saying do a cal lafter 200 ms 
 
  return() => {
   clearTimeout(timer)
@@ -22,11 +32,15 @@ useEffect(()=> {
  * 
  */
 const getSearchSuggestions = async() => {
-  console.log("API CALL- " + searchQuery);
   const data = await fetch(SEARCH_API+searchQuery);
   const json = await data.json();
   console.log(json);
   setSuggestions(json[1]);
+
+  //Update cache
+  dispatch(cacheResults({
+    [searchQuery]: json[1]
+  })) ;
 }
 
 const toggleMenuHandler =() => {
@@ -55,6 +69,8 @@ const toggleMenuHandler =() => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
           />
           <button className="bg-gray-700 p-3 rounded-r-full flex items-center justify-center">
             <svg
@@ -74,7 +90,7 @@ const toggleMenuHandler =() => {
           </button>
         </div>
         <>
-          {searchQuery && suggestions && (
+          {showSuggestions && (
             <div className="absolute bg-white py-2 px-2 w-[37rem] shadow-lg rounded-lg border border-gray-100">
               <ul>
                 {suggestions.map((sug) => (
