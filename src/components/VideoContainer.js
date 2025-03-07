@@ -4,7 +4,7 @@ import VideoCard , {AddVideoCard} from './VideoCard';
 import { Link } from 'react-router-dom';
 
 // wrap VideoCard with HOC
-const EnhancedVideoCard = AddVideoCard(VideoCard);
+// const EnhancedVideoCard = AddVideoCard(VideoCard);
 
 const VideoContainer = () => {
  
@@ -17,7 +17,8 @@ const VideoContainer = () => {
     try{
       const data = await fetch(YOUTUBE_VIDEOS_API);
       const json = await data?.json();
-      console.log("API" + json);
+      console.log(json);
+
       setVideos(json?.items);
     }catch(error) {
       res.status(400).json({ error: error.message });

@@ -34,7 +34,6 @@ useEffect(()=> {
 const getSearchSuggestions = async() => {
   const data = await fetch(SEARCH_API+searchQuery);
   const json = await data.json();
-  console.log(json);
   setSuggestions(json[1]);
 
   //Update cache

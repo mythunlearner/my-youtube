@@ -1,5 +1,4 @@
 import React from 'react'
-import Comment from './Comment'
 import CommentsList from './CommentsList'
 
 const commentsData = [
@@ -82,31 +81,7 @@ const commentsData = [
                                                                 name: "MithunPrasad",
                                                                 reply: "Looking forward to the roadmap. Also anything like roadmap for MLS?",
                                                                 replies: [
-                                                                    {
-                                                                        name: "MithunPrasad",
-                                                                        reply: "Looking forward to the roadmap. Also anything like roadmap for MLS?",
-                                                                        replies: [
-                                                                            {
-                                                                                name: "MithunPrasad",
-                                                                                reply: "Looking forward to the roadmap. Also anything like roadmap for MLS?",
-                                                                                replies: [
-                                                                                    {
-                                                                                        name: "MithunPrasad",
-                                                                                        reply: "Looking forward to the roadmap. Also anything like roadmap for MLS?",
-                                                                                        replies: [
-                                                                                            {
-                                                                                                name: "MithunPrasad",
-                                                                                                reply: "Looking forward to the roadmap. Also anything like roadmap for MLS?",
-                                                                                                replies: [
-                                                                                                    
-                                                                                                ]
-                                                                                            }
-                                                                                        ]
-                                                                                    }
-                                                                                ]
-                                                                            }
-                                                                        ]
-                                                                    }
+                                                                   
                                                                 ]
                                                             }
                                                         ]

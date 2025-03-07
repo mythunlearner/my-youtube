@@ -80,5 +80,6 @@ This project is built using **React** for the frontend to clone Youtube for lear
 - created sidebar 
 - Enabled Youtube API key 
 - Consumed Youtube API key
-
 - Debouncing
+- Live Chat
+
